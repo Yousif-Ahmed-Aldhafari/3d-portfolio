@@ -46,6 +46,7 @@ const clamp = (v: number, min: number, max: number) =>
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 const CURSOR_DIAMETER = 50;
+const CURSOR_Z_INDEX = 2000;
 const WRAP_PADDING = 8; // breathing room when hugging a target
 const WRAP_RADIUS = 12; // corner radius while wrapped
 const WRAP_EASE = 0.2; // how fast the cursor snaps to/from a target
@@ -374,7 +375,7 @@ function ElasticCursor() {
           height: CURSOR_DIAMETER,
           borderRadius: CURSOR_DIAMETER / 2,
           boxSizing: "border-box",
-          zIndex: 100,
+          zIndex: CURSOR_Z_INDEX,
           backdropFilter: "invert(100%)",
         }}
       ></div>
@@ -384,7 +385,7 @@ function ElasticCursor() {
         style={{
           opacity: 0,
           backdropFilter: "invert(100%)",
-          zIndex: 101,
+          zIndex: CURSOR_Z_INDEX + 1,
         }}
       ></div>
     </>
