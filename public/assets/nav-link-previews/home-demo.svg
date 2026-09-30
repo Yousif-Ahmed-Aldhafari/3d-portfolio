@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" fill="none">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(588 122) rotate(130) scale(400 300)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB" stop-opacity=".55"/><stop offset="1" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="520" fill="#0F172A"/>
+  <rect width="800" height="520" fill="url(#glow)"/>
+  <circle cx="104" cy="112" r="2" fill="#E2E8F0"/><circle cx="676" cy="340" r="3" fill="#93C5FD"/><circle cx="580" cy="98" r="2" fill="#E2E8F0"/><circle cx="262" cy="414" r="2" fill="#93C5FD"/>
+  <text x="72" y="174" fill="#94A3B8" font-family="Arial, sans-serif" font-size="20">PORTFOLIO</text>
+  <text x="68" y="256" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="62" font-weight="700">Yousif</text>
+  <text x="68" y="324" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="62" font-weight="700">Ahmed</text>
+  <text x="72" y="374" fill="#93C5FD" font-family="Arial, sans-serif" font-size="24">Software QA Engineer</text>
+  <rect x="72" y="414" width="174" height="40" rx="20" fill="#2563EB"/>
+  <text x="104" y="440" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="700">DEMO PORTFOLIO</text>
+</svg>

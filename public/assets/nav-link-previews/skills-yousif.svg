@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Yousif Ahmed skills preview</title>
+  <desc id="desc">A dark portfolio preview showing Software QA Engineer skills and testing tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#030712"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="26"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1010" cy="140" r="165" fill="#2563eb" opacity=".13" filter="url(#glow)"/>
+  <circle cx="180" cy="560" r="150" fill="#7c3aed" opacity=".12" filter="url(#glow)"/>
+  <g fill="#f8fafc" font-family="Arial, sans-serif">
+    <text x="48" y="55" font-size="20" font-weight="700">Yousif Ahmed</text>
+    <text x="1152" y="55" text-anchor="end" font-size="16" fill="#94a3b8">Software QA Engineer</text>
+    <text x="600" y="147" text-anchor="middle" font-size="58" font-weight="800" letter-spacing="6">SKILLS</text>
+    <text x="600" y="184" text-anchor="middle" font-size="17" fill="#94a3b8">TOOLS FOR RELIABLE, HIGH-QUALITY SOFTWARE</text>
+  </g>
+  <rect x="90" y="225" width="1020" height="350" rx="28" fill="#0f172a" stroke="#334155"/>
+  <g font-family="Arial, sans-serif" font-weight="700" text-anchor="middle">
+    <g transform="translate(130 270)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#38bdf8"/><path d="M31 42l7 7 15-17" fill="none" stroke="#08111f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Test Design</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Risk and coverage</text>
+    </g>
+    <g transform="translate(365 270)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#a78bfa"/><path d="M30 48h24M34 37h16" stroke="#120b20" stroke-width="5" stroke-linecap="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Automation</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">TypeScript and CI</text>
+    </g>
+    <g transform="translate(600 270)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#34d399"/><path d="M31 35h22v17H31zM36 30h12" fill="none" stroke="#062016" stroke-width="4" stroke-linejoin="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">API Testing</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Contracts and data</text>
+    </g>
+    <g transform="translate(835 270)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#fbbf24"/><path d="M42 29v26M29 42h26" stroke="#241a03" stroke-width="4" stroke-linecap="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Exploratory QA</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Usability and edges</text>
+    </g>
+    <g transform="translate(247 410)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#fb7185"/><path d="M42 29a13 13 0 1 0 0 26a13 13 0 1 0 0-26zm0 7v7l5 4" fill="none" stroke="#26070d" stroke-width="4" stroke-linecap="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Performance</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Speed and stability</text>
+    </g>
+    <g transform="translate(482 410)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#60a5fa"/><path d="M32 48l10-15 10 15H32z" fill="none" stroke="#07192e" stroke-width="4" stroke-linejoin="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Accessibility</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Inclusive interfaces</text>
+    </g>
+    <g transform="translate(717 410)">
+      <rect width="210" height="105" rx="18" fill="#172033" stroke="#334155"/>
+      <circle cx="42" cy="42" r="22" fill="#f97316"/><path d="M31 42h22M42 31v22" stroke="#2b1002" stroke-width="4" stroke-linecap="round"/>
+      <text x="124" y="39" fill="#f8fafc" font-size="17">Defect Triage</text><text x="124" y="66" fill="#94a3b8" font-size="13" font-weight="400">Clear, useful reports</text>
+    </g>
+  </g>
+  <rect x="420" y="612" width="360" height="3" rx="2" fill="url(#accent)"/>
+</svg>

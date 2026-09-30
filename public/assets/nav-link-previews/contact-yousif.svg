@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Yousif Ahmed contact preview</title>
+  <desc id="desc">A dark portfolio contact form preview for Yousif Ahmed.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#030712"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="990" cy="160" r="180" fill="#2563eb" opacity=".12" filter="url(#glow)"/>
+  <circle cx="165" cy="555" r="160" fill="#7c3aed" opacity=".11" filter="url(#glow)"/>
+  <g font-family="Arial, sans-serif">
+    <text x="48" y="55" fill="#f8fafc" font-size="20" font-weight="700">Yousif Ahmed</text>
+    <text x="1152" y="55" text-anchor="end" fill="#94a3b8" font-size="16">Software QA Engineer</text>
+    <text x="600" y="135" text-anchor="middle" fill="#f8fafc" font-size="52" font-weight="800" letter-spacing="3">LET'S WORK TOGETHER</text>
+    <text x="600" y="175" text-anchor="middle" fill="#94a3b8" font-size="18">yousif.aldhafari@gmail.com</text>
+  </g>
+  <rect x="190" y="215" width="820" height="385" rx="26" fill="#090f1c" stroke="#334155"/>
+  <g font-family="Arial, sans-serif">
+    <text x="235" y="270" fill="#f8fafc" font-size="30" font-weight="700">Contact Form</text>
+    <text x="235" y="301" fill="#94a3b8" font-size="15">Share a role, project, or quality challenge.</text>
+    <text x="235" y="355" fill="#cbd5e1" font-size="14" font-weight="700">Full name</text>
+    <text x="620" y="355" fill="#cbd5e1" font-size="14" font-weight="700">Email address</text>
+    <rect x="235" y="370" width="345" height="52" rx="9" fill="#172033" stroke="#334155"/>
+    <rect x="620" y="370" width="345" height="52" rx="9" fill="#172033" stroke="#334155"/>
+    <text x="255" y="403" fill="#64748b" font-size="15">Your name</text>
+    <text x="640" y="403" fill="#64748b" font-size="15">you@example.com</text>
+    <text x="235" y="462" fill="#cbd5e1" font-size="14" font-weight="700">Your message</text>
+    <rect x="235" y="477" width="730" height="58" rx="9" fill="#172033" stroke="#334155"/>
+    <text x="255" y="511" fill="#64748b" font-size="15">Tell Yousif about your project</text>
+    <rect x="235" y="555" width="730" height="2" rx="1" fill="url(#accent)" opacity=".9"/>
+    <text x="600" y="580" text-anchor="middle" fill="#f8fafc" font-size="15" font-weight="700">SEND MESSAGE</text>
+  </g>
+</svg>
