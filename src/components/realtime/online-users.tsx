@@ -1,5 +1,11 @@
 "use client";
-import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -12,11 +18,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 import { SocketContext, Message, ChatItem } from "@/contexts/socketio";
 import { useToast } from "@/components/ui/use-toast";
-import { Users, Users2, Hash, Settings } from "lucide-react";
+import { Users, UsersRound, Hash, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { useChatScroll } from "./hooks/use-chat-scroll";
@@ -33,7 +39,16 @@ import { THEME } from "./constants";
 import { getAvatarUrl } from "@/lib/avatar";
 
 const OnlineUsers = () => {
-  const { socket, users: _users, msgs, hasMoreMessages, loadingHistory, fetchOlderMessages, initStatus, fetchInitialMessages } = useContext(SocketContext);
+  const {
+    socket,
+    users: _users,
+    msgs,
+    hasMoreMessages,
+    loadingHistory,
+    fetchOlderMessages,
+    initStatus,
+    fetchInitialMessages,
+  } = useContext(SocketContext);
   const users = Array.from(_users.values());
   const [showUserList, setShowUserList] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +57,7 @@ const OnlineUsers = () => {
   const [editTarget, setEditTarget] = useState<Message | null>(null);
   const [showAdminDialog, setShowAdminDialog] = useState(false);
 
-  const currentUser = users.find(u => u.socketId === socket?.id);
+  const currentUser = users.find((u) => u.socketId === socket?.id);
   const { toast } = useToast();
   const { playSendSound, playReceiveSound } = useSounds();
   const connectionStatus = useConnectionStatus(socket);
@@ -60,7 +75,9 @@ const OnlineUsers = () => {
       }
     };
     socket.on("warning", onWarning);
-    return () => { socket.off("warning", onWarning); };
+    return () => {
+      socket.off("warning", onWarning);
+    };
   }, [socket]);
 
   // Play send/receive sounds for regular messages
@@ -69,7 +86,8 @@ const OnlineUsers = () => {
       // Skip sounds when receiving initial message history (large batch on connect)
       const isSmallBatch = msgs.length - prevMsgsLength.current <= 2;
       const lastMsg = msgs[msgs.length - 1];
-      const isSystem = lastMsg && "type" in lastMsg && lastMsg.type === "system";
+      const isSystem =
+        lastMsg && "type" in lastMsg && lastMsg.type === "system";
       let isRecent = true;
       if (lastMsg?.createdAt) {
         const msgTime = new Date(lastMsg.createdAt).getTime();
@@ -84,32 +102,26 @@ const OnlineUsers = () => {
     prevMsgsLength.current = msgs.length;
   }, [msgs, playSendSound, playReceiveSound, currentUser]);
 
-
-
   // Use custom hooks
   const {
     chatContainer,
     showScrollButton,
     unreads,
     scrollToBottom,
-    isAtBottomRef
+    isAtBottomRef,
   } = useChatScroll(
     isOpen,
     msgs.length,
     currentUser?.id,
     msgs[msgs.length - 1]?.sessionId,
-    msgs[0]?.id ? String(msgs[0].id) : undefined
+    msgs[0]?.id ? String(msgs[0].id) : undefined,
   );
 
-  const {
-    typingUsers,
-    handleTyping,
-    getTypingText
-  } = useTyping(
+  const { typingUsers, handleTyping, getTypingText } = useTyping(
     socket,
     currentUser,
     scrollToBottom,
-    isAtBottomRef
+    isAtBottomRef,
   );
 
   const handleEditLastMessage = useCallback(() => {
@@ -144,11 +156,19 @@ const OnlineUsers = () => {
     setReplyTarget(null);
   };
 
-  const updateProfile = ({ name, avatar, color }: { name: string; avatar: string, color?: string }) => {
+  const updateProfile = ({
+    name,
+    avatar,
+    color,
+  }: {
+    name: string;
+    avatar: string;
+    color?: string;
+  }) => {
     socket?.emit("update-user", {
       username: name,
       avatar,
-      color
+      color,
     });
     localStorage.setItem("username", name);
     localStorage.setItem("avatar", avatar);
@@ -159,7 +179,7 @@ const OnlineUsers = () => {
 
   // Feature 6: Keyboard shortcut Ctrl+/ to toggle chat
   const toggleOpen = useCallback(() => {
-    setIsOpen(prev => {
+    setIsOpen((prev) => {
       if (prev) setShowUserList(false);
       else fetchInitialMessages();
       return !prev;
@@ -188,23 +208,22 @@ const OnlineUsers = () => {
           if (!newOpen && isEditingProfile) return;
           setIsOpen(newOpen);
           if (newOpen) fetchInitialMessages();
-          if (!newOpen) setShowUserList(false)
+          if (!newOpen) setShowUserList(false);
         }}
       >
         <div className="flex items-center gap-2" data-no-custom-cursor="true">
-          {/* Feature 4: "N people here" label */}
-          <AnimatePresence>
-            {users.length >= 2 && !isOpen && (
-              <motion.span
-                initial={{ opacity: 0, x: 5 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 5 }}
-                className={cn("text-xs hidden md:block font-medium whitespace-nowrap select-none", THEME.text.secondary)}
-              >
-                {users.length} people here
-              </motion.span>
+          <motion.span
+            key={users.length}
+            initial={{ opacity: 0, y: 2 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className={cn(
+              "hidden select-none whitespace-nowrap text-xs font-medium md:block",
+              THEME.text.secondary,
             )}
-          </AnimatePresence>
+          >
+            {users.length} {users.length === 1 ? "person" : "people"} here
+          </motion.span>
 
           <TooltipProvider delayDuration={300}>
             <Tooltip>
@@ -212,41 +231,35 @@ const OnlineUsers = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
+                    type="button"
+                    aria-label={`Open live presence and chat, ${users.length} ${users.length === 1 ? "person" : "people"} here`}
+                    aria-expanded={isOpen}
                     className={cn(
-                      "mr-4 h-11 w-12 shadow-lg transition-all duration-300 z-50 p-0",
-                      "bg-background/20 hover:bg-background/80 backdrop-blur-sm border-2 border-white/30 rounded-lg",
-                      !isOpen && unreads > 0 && "animate-pulse border-green-500/50"
+                      "z-50 h-10 w-10 shrink-0 rounded-lg border p-0 shadow-sm backdrop-blur-sm transition-all duration-300 sm:h-11 sm:w-12",
+                      "border-black/10 bg-background/40 hover:bg-background/80 dark:border-white/20 dark:bg-background/30",
+                      !isOpen &&
+                        unreads > 0 &&
+                        "animate-pulse border-green-500/50",
                     )}
                   >
                     <div className="relative flex items-center justify-center w-full h-full">
-                      <div className="relative">
-                        <motion.div
-                          initial={{ scale: 0.5, opacity: 1 }}
-                          animate={{ scale: [0.1, 2], opacity: [1, 0] }}
-                          transition={{
-                            duration: .4,
-                            delay: 0,
-                            ease: "easeOut",
-                            repeat: Infinity,
-                            repeatDelay: 2,
-                          }}
-                          className={cn("absolute -inset-1 rounded-full", unreads > 0 ? "bg-green-500/40" : "bg-transparent")}
-                        />
-                        <Users2 className="w-6 h-6" />
-                      </div>
+                      <UsersRound className="size-5 sm:size-6" />
 
-                      <span className={cn(
-                        "absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold transition-colors",
-                        unreads > 0 ? "bg-green-500 text-white" : "bg-red-500 text-white"
-                      )}>
-                        {unreads > 0 ? unreads : users.length}
+                      <span
+                        className={cn(
+                          "absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white",
+                        )}
+                      >
+                        {users.length}
                       </span>
                     </div>
                   </Button>
                 </PopoverTrigger>
               </TooltipTrigger>
               <TooltipContent side="left">
-                <p>Chat <kbd className="ml-1 text-[10px] opacity-60">Ctrl+/</kbd></p>
+                <p>
+                  Chat <kbd className="ml-1 text-[10px] opacity-60">Ctrl+/</kbd>
+                </p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -256,28 +269,49 @@ const OnlineUsers = () => {
           className={cn(
             "w-80 min-h-[400px] sm:w-96 p-0 border-none shadow-2xl overflow-hidden rounded-xl mr-4 mb-4 flex flex-col",
             THEME.bg.primary,
-            THEME.text.primary
+            THEME.text.primary,
           )}
           side="top"
           data-no-custom-cursor="true"
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           {/* Header */}
-          <div className={cn("h-12 flex items-center justify-between px-4 shadow-sm border-b shrink-0", THEME.bg.secondary, THEME.border.primary)}>
-            <div className={cn("flex items-center gap-2 font-semibold", THEME.text.header)}>
+          <div
+            className={cn(
+              "h-12 flex items-center justify-between px-4 shadow-sm border-b shrink-0",
+              THEME.bg.secondary,
+              THEME.border.primary,
+            )}
+          >
+            <div
+              className={cn(
+                "flex items-center gap-2 font-semibold",
+                THEME.text.header,
+              )}
+            >
               <Hash className={cn("w-5 h-5", THEME.text.secondary)} />
               <span>general</span>
               {/* Feature 2: Connection status indicator */}
               <div className="flex items-center gap-1.5">
-                <div className={cn(
-                  "w-2 h-2 rounded-full",
-                  connectionStatus === "connected" && "bg-green-500",
-                  connectionStatus === "connecting" && "bg-yellow-500 animate-pulse",
-                  connectionStatus === "disconnected" && "bg-red-500",
-                )} />
+                <div
+                  className={cn(
+                    "w-2 h-2 rounded-full",
+                    connectionStatus === "connected" && "bg-green-500",
+                    connectionStatus === "connecting" &&
+                      "bg-yellow-500 animate-pulse",
+                    connectionStatus === "disconnected" && "bg-red-500",
+                  )}
+                />
                 {connectionStatus !== "connected" && (
-                  <span className={cn("text-[10px] font-normal", THEME.text.secondary)}>
-                    {connectionStatus === "connecting" ? "Connecting..." : "Disconnected"}
+                  <span
+                    className={cn(
+                      "text-[10px] font-normal",
+                      THEME.text.secondary,
+                    )}
+                  >
+                    {connectionStatus === "connecting"
+                      ? "Connecting..."
+                      : "Disconnected"}
                   </span>
                 )}
               </div>
@@ -291,7 +325,7 @@ const OnlineUsers = () => {
                     "h-9 w-9 p-0 gap-2 transition-colors rounded-full",
                     THEME.bg.hover,
                     THEME.text.secondary,
-                    "hover:text-[#060607] dark:hover:text-white"
+                    "hover:text-[#060607] dark:hover:text-white",
                   )}
                   onClick={() => setIsEditingProfile(true)}
                   title="Edit Profile"
@@ -300,7 +334,9 @@ const OnlineUsers = () => {
                     <img
                       src={getAvatarUrl(currentUser.avatar)}
                       className="w-full h-full rounded-full ring-1 ring-black/10 dark:ring-white/10"
-                      style={{ backgroundColor: currentUser.color || '#60a5fa' }}
+                      style={{
+                        backgroundColor: currentUser.color || "#60a5fa",
+                      }}
                     />
                     <div className="absolute -bottom-1 -right-1 bg-[#5865f2] rounded-full border-2 border-[var(--bg-primary)]">
                       <Settings className="w-3 h-3 text-white" />
@@ -319,22 +355,26 @@ const OnlineUsers = () => {
                   THEME.bg.hover,
                   `hover:${THEME.text.header.replace("text-", "text-")} `,
                   "hover:text-[#060607] dark:hover:text-white",
-                  showUserList && cn(THEME.text.header, THEME.bg.active)
+                  showUserList && cn(THEME.text.header, THEME.bg.active),
                 )}
                 onClick={() => setShowUserList(!showUserList)}
               >
                 <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" aria-label="Online" role="status" />
-                  <span>
-                    {users.length}
-                  </span>
+                  <div
+                    className="w-2 h-2 bg-green-500 rounded-full"
+                    aria-label="Online"
+                    role="status"
+                  />
+                  <span>{users.length}</span>
                 </div>
                 <Users className="w-5 h-5" />
               </Button>
             </div>
           </div>
 
-          <div className={cn("relative flex flex-col flex-1", THEME.bg.primary)}>
+          <div
+            className={cn("relative flex flex-col flex-1", THEME.bg.primary)}
+          >
             <ChatMessageList
               msgs={msgs}
               users={users}
@@ -374,7 +414,6 @@ const OnlineUsers = () => {
               onEditProfile={() => setIsEditingProfile(true)}
             />
           </div>
-
         </PopoverContent>
       </Popover>
 

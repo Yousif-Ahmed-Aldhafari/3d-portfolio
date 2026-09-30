@@ -1,14 +1,19 @@
 .header {
-  z-index: 9;
-  // background-color: hsl(var(--background) / .8);
+  z-index: 1000;
   position: fixed;
   width: 100%;
   box-sizing: border-box;
-  padding: 15px;
-  backdrop-filter: blur(12px);
+  padding: 12px;
+  backdrop-filter: blur(0);
+
+  &.headerOpen {
+    backdrop-filter: blur(12px);
+  }
 
   .background {
-    background-color: hsl(240 10% 3.9%); // constant color instead of using a css variable
+    background-color: hsl(
+      240 10% 3.9%
+    ); // constant color instead of using a css variable
     opacity: 0.5;
     height: 100%;
     width: 100%;
@@ -19,8 +24,11 @@
 
   .bar {
     display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
     justify-content: flex-end;
-    text-transform: lowercase;
+    gap: 12px;
     font-size: 12px;
     font-weight: 400;
     position: relative;
@@ -74,7 +82,7 @@
 
         &::after,
         &::before {
-          content: '';
+          content: "";
           height: 1px;
           width: 100%;
           background-color: hsl(var(--foreground));
@@ -109,6 +117,8 @@
 
 @media only screen and (min-width: 600px) {
   .header {
+    padding: 15px;
+
     .bar {
       font-size: 15px;
     }
